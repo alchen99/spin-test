@@ -1,0 +1,12 @@
+{
+  "repository": "alchen99/spin-test",
+  "commit": "7265304d7ca8ee5c82c4f99a88eb182a0e800564",
+  "ref": "refs/heads/main",
+  "githubEventName": "push",
+  "githubActor": "alchen99",
+  "githubAction": "__ExpediaGroup_spinnaker-pipeline-trigger",
+  "parameters": {
+    "param1": "fromGHA"
+  },
+  "messageAttributes": {}
+}
