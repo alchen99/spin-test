@@ -23,3 +23,5 @@ jobs:
       with:
         aws_region: us-east-1
         topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
+        parameters: |
+          param1: fromGHA
