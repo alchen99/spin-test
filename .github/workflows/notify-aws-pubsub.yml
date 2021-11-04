@@ -1,3 +1,4 @@
+on: [push, pull_request]
 jobs:
   deploy:
     name: Notify AWS Pubsub and trigger Spinnaker
