@@ -1,0 +1,24 @@
+jobs:
+  deploy:
+    name: Notify AWS Pubsub and trigger Spinnaker
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials from psdev account
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::569630529054:role/Create-Github-OIDC-Provider-Role-7CUJXJ0M21LC
+        aws-region: us-east-1
+
+    - name: Trigger Spinnaker with Pubsub
+      uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
+      with:
+        topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
+        parameters: |
+          param1: fromGitHub
