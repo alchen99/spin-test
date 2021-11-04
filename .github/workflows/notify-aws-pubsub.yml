@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Configure AWS credentials from psdev account
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: uses: aws-actions/configure-aws-credentials@master
       with:
         aws-region: us-east-1
         role-to-assume: arn:aws:iam::569630529054:role/Create-Github-OIDC-Provider-Role-7CUJXJ0M21LC
