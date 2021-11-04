@@ -14,8 +14,9 @@ jobs:
     - name: Configure AWS credentials from psdev account
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::569630529054:role/Create-Github-OIDC-Provider-Role-7CUJXJ0M21LC
         aws-region: us-east-1
+        role-to-assume: arn:aws:iam::569630529054:role/Create-Github-OIDC-Provider-Role-7CUJXJ0M21LC
+        role-session-name: MySessionName
 
     - name: Trigger Spinnaker with Pubsub
       uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
