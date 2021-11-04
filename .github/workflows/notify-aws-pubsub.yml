@@ -15,11 +15,11 @@ jobs:
       uses: aws-actions/configure-aws-credentials@master
       with:
         aws-region: us-east-1
-        role-to-assume: arn:aws:iam::569630529054:role/Create-Github-OIDC-Provider-Role-7CUJXJ0M21LC
+        role-to-assume: ${{ secrets.SPINNAKER_ASSUME_ROLE }}
         role-session-name: MySessionName
 
     - name: Trigger Spinnaker with Pubsub
       uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
       with:
         aws_region: us-east-1
-        topic_arn: arn:aws:sns:us-east-1:569630529054:spin-alc-pubsub-topic-2
+        topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
