@@ -22,5 +22,3 @@ jobs:
       uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
       with:
         topic_arn: arn:aws:sns:us-east-1:569630529054:spin-alc-pubsub-topic-2
-        parameters: |
-          param1: fromGitHub
