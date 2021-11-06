@@ -19,7 +19,7 @@ jobs:
         role-session-name: MySessionName
 
     - name: Trigger Spinnaker with Pubsub
-      uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
+      uses: alchen99/spinnaker-pipeline-trigger@v1.2.0
       with:
         aws_region: us-east-1
         topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
