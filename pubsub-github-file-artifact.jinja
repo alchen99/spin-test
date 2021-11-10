@@ -1,0 +1,12 @@
+[
+{% for gitShort, gitLong in githubAddMod.items() %}
+  {
+    "customKind": false,
+    "type": "github/file",
+    "name": "{{ gitShort }}",
+    "reference": "{{ gitLong }}",
+    "version": "{{ commit }}",
+    "metadata": {}
+  } {% if not loop.last %}, {% endif %}
+{% endfor %}
+]
