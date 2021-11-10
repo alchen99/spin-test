@@ -11,6 +11,24 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Get Changed Files
+      id: files
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'json'
+
+    - name: Format output of changed files
+      id: gitmodified
+      run: |
+        set +x
+        if [[ '${{ steps.files.outputs.added_modified }}' == '' ]]; then
+          git_added_modified='{}'
+        else
+          git_added_modified=$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')
+        fi
+        set -x
+        echo "::set-output name=git_added_modified::${git_added_modified}"
+
     - name: Configure AWS credentials from psdev account
       uses: aws-actions/configure-aws-credentials@master
       with:
@@ -19,9 +37,10 @@ jobs:
         role-session-name: MySessionName
 
     - name: Trigger Spinnaker with Pubsub
-      uses: alchen99/spinnaker-pipeline-trigger@v1.3.2
+      uses: alchen99/spinnaker-pipeline-trigger@v2.0.0
       with:
         aws_region: us-east-1
         topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
+        git_add_modified: ${{ steps.gitmodified.outputs.git_added_modified }}
         parameters: |
           param1: fromGHA
