@@ -5,6 +5,9 @@
   "githubEventName": "push",
   "githubActor": "alchen99",
   "githubAction": "__ExpediaGroup_spinnaker-pipeline-trigger",
+  "githubAddMod": {
+    "README.md": "https://api.github.com/repos/alchen99/spin-test/contents/README.md"
+  },
   "parameters": {
     "param1": "fromGHA"
   },
