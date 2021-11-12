@@ -37,7 +37,7 @@ jobs:
         role-session-name: MySessionName
 
     - name: Trigger Spinnaker with Pubsub
-      uses: alchen99/spinnaker-pipeline-trigger@v2.0.1
+      uses: alchen99/spinnaker-pipeline-trigger@v2.1.0
       with:
         aws_region: us-east-1
         topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
