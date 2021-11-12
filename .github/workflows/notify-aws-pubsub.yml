@@ -41,7 +41,7 @@ jobs:
       with:
         aws_region: us-east-1
         topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
-        docker_images: '["index.docker.io/hashicorp/http-echo:latest", "index.docker.io/library/nginx:latest"]'
         git_add_modified: ${{ steps.gitmodified.outputs.git_added_modified }}
+        docker_images: '["index.docker.io/hashicorp/http-echo:latest", "index.docker.io/library/nginx:latest"]'
         parameters: |
           param1: fromGHA
