@@ -1,0 +1,23 @@
+[
+{% for gitShort, gitLong in githubAddMod.items() %}
+  {
+    "customKind": false,
+    "type": "github/file",
+    "name": "{{ gitShort }}",
+    "reference": "{{ gitLong }}",
+    "version": "{{ commit }}",
+    "metadata": {}
+  } {% if not loop.last or (loop.last and docker|length > 0) %}, {% endif %}
+{% endfor %}
+{% for image in docker %}
+  {% set imglist = image.split(':') %}
+  {
+    "customKind": false,
+    "type": "docker/image",
+    "name": "{{ imglist[0] }}",
+    "reference": "{{ image }}",
+    "version": "{{ imglist[1] }}",
+    "metadata": {}
+  } {% if not loop.last %}, {% endif %}
+{% endfor %}
+]
